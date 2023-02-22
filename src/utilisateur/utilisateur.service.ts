@@ -1,8 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { UtilisateurDto } from './Utilisateur.dto';
 import { Utilisateur } from './utilisateur.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
+import { NotFoundException } from 'src/exceptions/notfound.exception';
 
 
 @Injectable()
@@ -44,8 +45,12 @@ export class UtilisateurService {
      * @param id de l'utilisateur à rechercher
      * @returns l'utilisateur
      */
-    findById(id: number){
-        return this.repository.findOne({where: {id}})
+    async findById(id: number){
+        const res = await this.repository.findOne({where: {id}});
+        if (!res){ // <=> res == null
+            throw new NotFoundException(`Aucun utilisateur ne porte l'id ${id} dans la base de données`)
+        }
+        return res;
     }
 
     /**

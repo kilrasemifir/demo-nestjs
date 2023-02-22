@@ -7,6 +7,8 @@ import { CalculatriceV2Service } from './calculatrice-v2/calculatrice-v2.service
 import { UtilisateurModule } from './utilisateur/utilisateur.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Utilisateur } from './utilisateur/utilisateur.entity';
+import { VoitureModule } from './voiture/voiture.module';
+import { Voiture } from './voiture/entities/voiture.entity';
 
 @Module({
   imports: [
@@ -19,10 +21,12 @@ import { Utilisateur } from './utilisateur/utilisateur.entity';
       password: process.env["DB_PASSWORD"] || "root",
       database: "test",
       entities: [
-        Utilisateur
+        Utilisateur,
+        Voiture
       ],
       synchronize: true
-    })
+    }),
+    VoitureModule
   ],
   controllers: [AppController, CalculatriceController],
   providers: [AppService, CalculatriceService, CalculatriceV2Service],

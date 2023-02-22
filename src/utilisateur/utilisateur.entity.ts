@@ -1,7 +1,11 @@
+import { Voiture } from 'src/voiture/entities/voiture.entity';
 import { 
     Entity, 
     PrimaryGeneratedColumn, 
     Column,
+    ManyToMany,
+    JoinTable,
+    JoinColumn
 } from 'typeorm'
 
 @Entity({
@@ -20,4 +24,8 @@ export class Utilisateur {
 
     @Column()
     email: string;
+
+    @ManyToMany(()=>Voiture, {eager: true, cascade: ["insert"]})
+    @JoinTable()
+    voitures: Voiture[]
 }

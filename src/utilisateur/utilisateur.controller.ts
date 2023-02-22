@@ -1,29 +1,47 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import {
+    Body,
+    Controller,
+    Delete,
+    Get,
+    HttpCode,
+    HttpStatus, 
+    Param, 
+    ParseIntPipe, 
+    Post, 
+    UseFilters
+} from '@nestjs/common';
+import { NotFoundFilter } from 'src/not-found/not-found.filter';
 import { UtilisateurDto } from './Utilisateur.dto';
+import { Utilisateur } from './utilisateur.entity';
+import { UtilisateurPipe } from './utilisateur.pipe';
 import { UtilisateurService } from './utilisateur.service';
 
 @Controller('utilisateurs')
+// @UseFilters(new NotFoundFilter())
 export class UtilisateurController {
 
-    constructor(private service: UtilisateurService){}
+    constructor(private service: UtilisateurService) { }
 
     @Get()
-    getUtilisateurs(): Promise<UtilisateurDto[]>{
+    async getUtilisateurs(): Promise<Utilisateur[]> {
+        console.log(await this.service.findAll())
         return this.service.findAll();
     }
 
     @Post()
-    postUtilisateur(@Body() utilisateur: UtilisateurDto){
+    postUtilisateur(@Body(UtilisateurPipe) utilisateur: UtilisateurDto) {
         return this.service.save(utilisateur);
     }
 
     @Get(":id")
-    getUtilisateurById(@Param("id") id: number){
+    // @UseFilters(new NotFoundFilter())
+    getUtilisateurById(@Param("id", ParseIntPipe) id: number) {
         return this.service.findById(id);
     }
 
     @Delete(":id")
-    deleteUtilisateurById(@Param("id") id: number){
+    @HttpCode(HttpStatus.ACCEPTED)
+    deleteUtilisateurById(@Param("id") id: number) {
         return this.service.deleteById(id);
     }
 }
