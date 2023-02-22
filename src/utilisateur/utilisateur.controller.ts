@@ -1,4 +1,4 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { UtilisateurDto } from './Utilisateur.dto';
 import { UtilisateurService } from './utilisateur.service';
 
@@ -8,12 +8,22 @@ export class UtilisateurController {
     constructor(private service: UtilisateurService){}
 
     @Get()
-    getUtilisateurs(): UtilisateurDto[]{
+    getUtilisateurs(): Promise<UtilisateurDto[]>{
         return this.service.findAll();
     }
 
     @Post()
-    postUtilisateur(utilisateur: UtilisateurDto){
+    postUtilisateur(@Body() utilisateur: UtilisateurDto){
         return this.service.save(utilisateur);
+    }
+
+    @Get(":id")
+    getUtilisateurById(@Param("id") id: number){
+        return this.service.findById(id);
+    }
+
+    @Delete(":id")
+    deleteUtilisateurById(@Param("id") id: number){
+        return this.service.deleteById(id);
     }
 }
