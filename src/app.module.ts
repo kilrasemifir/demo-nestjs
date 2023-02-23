@@ -6,7 +6,7 @@ import { CalculatriceService } from './calculatrice/calculatrice.service';
 import { CalculatriceV2Service } from './calculatrice-v2/calculatrice-v2.service';
 import { UtilisateurModule } from './utilisateur/utilisateur.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Utilisateur } from './utilisateur/utilisateur.entity';
+import { Utilisateur } from './utilisateur/entities/utilisateur.entity';
 import { VoitureModule } from './voiture/voiture.module';
 import { Voiture } from './voiture/entities/voiture.entity';
 

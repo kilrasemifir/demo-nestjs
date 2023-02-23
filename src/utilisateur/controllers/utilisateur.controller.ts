@@ -11,10 +11,10 @@ import {
     UseFilters
 } from '@nestjs/common';
 import { NotFoundFilter } from 'src/not-found/not-found.filter';
-import { UtilisateurDto } from './Utilisateur.dto';
-import { Utilisateur } from './utilisateur.entity';
-import { UtilisateurPipe } from './utilisateur.pipe';
-import { UtilisateurService } from './utilisateur.service';
+import { UtilisateurDto } from '../dto/utilisateur.dto';
+import { Utilisateur } from '../entities/utilisateur.entity';
+import { UtilisateurPipe } from '../pipes/utilisateur.pipe';
+import { UtilisateurService } from '../services/utilisateur.service';
 
 @Controller('utilisateurs')
 // @UseFilters(new NotFoundFilter())
