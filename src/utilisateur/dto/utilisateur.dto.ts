@@ -1,5 +1,4 @@
-import { IsString } from "class-validator";
-import { IsAlpha, IsEmail, IsNotEmpty, IsOptional, ValidateIf } from "class-validator/types/decorator/decorators";
+import { IsString, IsAlpha, IsEmail, IsNotEmpty, IsOptional, ValidateIf } from "class-validator";
 import { Voiture } from "src/voiture/entities/voiture.entity";
 
 export class UtilisateurDto{

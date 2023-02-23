@@ -1,5 +1,5 @@
 import { ArgumentMetadata, BadRequestException, Injectable, PipeTransform } from '@nestjs/common';
-import { utilisateurSchema } from './utilisateur.schema';
+import { utilisateurSchema } from '../dto/utilisateur.schema';
 
 @Injectable()
 export class UtilisateurPipe implements PipeTransform {

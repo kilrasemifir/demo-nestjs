@@ -1,8 +1,8 @@
 import { Controller, Get, Post, Param, Query, Body, Response } from '@nestjs/common';
 import { AppService } from './app.service';
 import { Utilisateur } from './utilisateur/entities/utilisateur.entity';
-import { UtilisateurPipe } from './utilisateur/utilisateur.pipe';
-import { UtilisateurService } from './utilisateur/utilisateur.service';
+import { UtilisateurPipe } from './utilisateur/pipes/utilisateur.pipe';
+import { UtilisateurService } from './utilisateur/services/utilisateur.service';
 
 @Controller()
 export class AppController {
