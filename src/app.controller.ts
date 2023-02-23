@@ -1,5 +1,7 @@
 import { Controller, Get, Post, Param, Query, Body, Response } from '@nestjs/common';
 import { AppService } from './app.service';
+import { Utilisateur } from './utilisateur/utilisateur.entity';
+import { UtilisateurPipe } from './utilisateur/utilisateur.pipe';
 import { UtilisateurService } from './utilisateur/utilisateur.service';
 
 @Controller()
@@ -51,5 +53,10 @@ export class AppController {
   @Get("count")
   getUtilisateruCount(){
 
+  }
+
+  @Post("demo")
+  postDemo(@Body(UtilisateurPipe) body: Utilisateur){
+    console.log(body);
   }
 }
