@@ -16,4 +16,8 @@ export class UtilisateurDto{
     @ValidateIf((voitures: Voiture[])=>voitures?.length < 10)5
     @IsOptional()
     public voitures: Voiture[] = []
+
+    password: string;
+
+    role: string
 }

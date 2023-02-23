@@ -28,4 +28,10 @@ export class Utilisateur {
     @ManyToMany(()=>Voiture, {eager: true, cascade: ["insert"]})
     @JoinTable()
     voitures: Voiture[]
+
+    @Column()
+    password: string;
+
+    @Column()
+    role: string;
 }

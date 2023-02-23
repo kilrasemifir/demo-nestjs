@@ -7,5 +7,7 @@ export const utilisateurSchema = Joi.object({
     email: Joi.string().email().required().messages({
         "any.required": "Vous devez definir un email"
     }),
-    voitures: Joi.array<Voiture>()
+    password: Joi.string().required(),
+    voitures: Joi.array<Voiture>(),
+    role: Joi.string().default("USER")
 })

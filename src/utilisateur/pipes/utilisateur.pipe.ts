@@ -12,6 +12,7 @@ export class UtilisateurPipe implements PipeTransform {
       nom: value.nom,
       prenom: value.prenom,
       email: value.email,
+      password: value.password,
       voitures: value.voitures
     };
   }

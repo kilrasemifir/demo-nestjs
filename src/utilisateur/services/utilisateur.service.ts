@@ -62,4 +62,12 @@ export class UtilisateurService {
         // <=> SELECT * FROM utilisateurs WHERE nom = nom
         return this.repository.find({where: {nom}})
     }
+
+    findByEmailAndPassword(email: string, password: string){
+        return this.repository.findOne({
+            where: {email, password}
+        })
+    }
+
+
 }

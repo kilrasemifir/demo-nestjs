@@ -9,13 +9,19 @@ import {
     Param, 
     ParseIntPipe, 
     Post, 
-    UseFilters
+    UseFilters,
+    UseGuards
 } from '@nestjs/common';
-import { NotFoundFilter } from 'src/not-found/not-found.filter';
+import { AuthGuard } from '@nestjs/passport';
+import { DemoGuard } from 'src/auth/demo/demo.guard';
+import { HasRole } from 'src/auth/hasrole.decorator';
+import { RoleGuard } from 'src/auth/role/role.guard';
+import { NotFoundFilter } from 'src/exceptions/not-found/not-found.filter';
 import { UtilisateurDto } from '../dto/utilisateur.dto';
 import { Utilisateur } from '../entities/utilisateur.entity';
 import { UtilisateurPipe } from '../pipes/utilisateur.pipe';
 import { UtilisateurService } from '../services/utilisateur.service';
+
 
 @Controller('utilisateurs')
 // @UseFilters(new NotFoundFilter())
@@ -25,6 +31,8 @@ export class UtilisateurController {
     constructor(private service: UtilisateurService) { }
 
     @Get()
+    @HasRole("USER")
+    @UseGuards(RoleGuard)
     async getUtilisateurs(): Promise<Utilisateur[]> {
         return this.service.findAll();
     }

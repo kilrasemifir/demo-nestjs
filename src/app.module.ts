@@ -9,6 +9,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Utilisateur } from './utilisateur/entities/utilisateur.entity';
 import { VoitureModule } from './voiture/voiture.module';
 import { Voiture } from './voiture/entities/voiture.entity';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -26,7 +27,8 @@ import { Voiture } from './voiture/entities/voiture.entity';
       ],
       synchronize: true
     }),
-    VoitureModule
+    VoitureModule,
+    AuthModule
   ],
   controllers: [AppController, CalculatriceController],
   providers: [AppService, CalculatriceService, CalculatriceV2Service],
