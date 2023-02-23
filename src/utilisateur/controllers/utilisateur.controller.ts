@@ -5,6 +5,7 @@ import {
     Get,
     HttpCode,
     HttpStatus, 
+    Logger, 
     Param, 
     ParseIntPipe, 
     Post, 
@@ -19,12 +20,12 @@ import { UtilisateurService } from '../services/utilisateur.service';
 @Controller('utilisateurs')
 // @UseFilters(new NotFoundFilter())
 export class UtilisateurController {
+    private readonly logger = new Logger(UtilisateurController.name);
 
     constructor(private service: UtilisateurService) { }
 
     @Get()
     async getUtilisateurs(): Promise<Utilisateur[]> {
-        console.log(await this.service.findAll())
         return this.service.findAll();
     }
 
@@ -42,6 +43,7 @@ export class UtilisateurController {
     @Delete(":id")
     @HttpCode(HttpStatus.ACCEPTED)
     deleteUtilisateurById(@Param("id") id: number) {
+        this.logger.log(`demande de suppression de l'utilisateur ${id}`)
         return this.service.deleteById(id);
     }
 }
